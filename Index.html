@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incentive & Performance Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #14868c;
+            --brand-light: #e8f4f4;
+            --success: #10b981;
+            --gold: #f59e0b;
+            --bg: #f3f7f9;
+            --white: #ffffff;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text-dark); margin: 0; padding: 30px; }
+        
+        .report-wrapper { max-width: 1300px; margin: 0 auto; }
+
+        /* Header Section */
+        .header-flex { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+        .title-area h1 { margin: 0; font-size: 24px; font-weight: 700; color: var(--brand); }
+        .title-area p { margin: 5px 0 0; color: var(--text-light); font-size: 14px; }
+
+        .filter-card { background: var(--white); padding: 15px 20px; border-radius: 12px; border: 1px solid var(--border); display: flex; gap: 15px; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .filter-card input { border: 1px solid var(--border); padding: 8px 12px; border-radius: 6px; outline: none; font-size: 13px; }
+        .btn-refresh { background: var(--brand); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+        /* Summary Dashboard */
+        .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: var(--white); padding: 20px; border-radius: 16px; border: 1px solid var(--border); position: relative; overflow: hidden; }
+        .stat-card::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--brand); }
+        .stat-label { font-size: 12px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-value { font-size: 26px; font-weight: 800; margin: 8px 0; display: block; }
+        .stat-sub { font-size: 12px; color: var(--success); font-weight: 500; }
+
+        /* Table Design */
+        .main-table-card { background: var(--white); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f8fafc; padding: 16px; text-align: left; font-size: 12px; color: var(--text-light); border-bottom: 1px solid var(--border); }
+        td { padding: 18px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+
+        .staff-cell { display: flex; align-items: center; gap: 12px; }
+        .staff-img { width: 40px; height: 40px; border-radius: 10px; background: var(--brand-light); color: var(--brand); display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        
+        .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .status-top { background: #fef3c7; color: #92400e; }
+        .status-good { background: #dcfce7; color: #166534; }
+
+        .amt-bold { font-weight: 700; color: var(--text-dark); }
+        .bonus-amt { color: var(--brand); font-weight: 800; background: var(--brand-light); padding: 4px 8px; border-radius: 6px; }
+
+        .progress-mini { width: 100px; height: 6px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin-top: 5px; }
+        .progress-fill { height: 100%; background: var(--brand); }
+
+        .action-btn { background: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; }
+        .action-btn:hover { background: var(--brand); color: white; border-color: var(--brand); }
+    </style>
+</head>
+<body>
+
+<div class="report-wrapper">
+    
+    <div class="header-flex">
+        <div class="title-area">
+            <h1>Staff Incentive Dashboard</h1>
+            <p>Tracking individual sales, bonuses, and contribution targets</p>
+        </div>
+        <div class="filter-card">
+            <div style="display: flex; flex-direction: column;">
+                <label style="font-size: 11px; font-weight: 700; color: var(--text-light);">SELECT PERIOD</label>
+                <div style="display:flex; gap: 5px; margin-top:5px;">
+                    <input type="date" value="2026-02-01">
+                    <input type="date" value="2026-02-07">
+                </div>
+            </div>
+            <button class="btn-refresh">Filter Report</button>
+        </div>
+    </div>
+
+    <div class="summary-grid">
+        <div class="stat-card">
+            <span class="stat-label">Total Revenue</span>
+            <span class="stat-value">৳ 8,45,000</span>
+            <span class="stat-sub">↑ 12% from last week</span>
+        </div>
+        <div class="stat-card" style="--brand: #f59e0b;">
+            <span class="stat-label">Total Payout (Bonus)</span>
+            <span class="stat-value">৳ 16,900</span>
+            <span class="stat-sub" style="color:var(--text-light)">Avg 2.0% Commission</span>
+        </div>
+        <div class="stat-card" style="--brand: #10b981;">
+            <span class="stat-label">Top Performer</span>
+            <span class="stat-value" style="font-size: 20px;">Ishan Demo</span>
+            <span class="stat-sub">৳ 3,20,000 Sales</span>
+        </div>
+        <div class="stat-card" style="--brand: #6366f1;">
+            <span class="stat-label">Active Sales Staff</span>
+            <span class="stat-value">12 Persons</span>
+            <span class="stat-sub">92% Target Achieved</span>
+        </div>
+    </div>
+
+    <div class="main-table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sales Professional</th>
+                    <th>Status</th>
+                    <th>Qty Sold</th>
+                    <th>Revenue (Taka)</th>
+                    <th>Bonus (Incentive)</th>
+                    <th>Market Share</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="staff-cell">
+                            <div class="staff-img">ID</div>
+                            <div>
+                                <div style="font-weight: 700;">Ishan Demo</div>
+                                <div style="font-size: 11px; color: var(--text-light);">ID: EMP-101 • Senior Exec</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="status-pill status-top">⭐ Top Seller</span></td>
+                    <td>145 Items</td>
+                    <td class="amt-bold">৳ 3,20,000</td>
+                    <td><span class="bonus-amt">৳ 6,400</span></td>
+                    <td>
+                        <div style="font-size: 12px; font-weight: 600;">38%</div>
+                        <div class="progress-mini"><div class="progress-fill" style="width: 38%;"></div></div>
+                    </td>
+                    <td><button class="action-btn">View Invoices</button></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="staff-cell">
+                            <div class="staff-img" style="background:#f1f5f9; color: #475569;">AA</div>
+                            <div>
+                                <div style="font-weight: 700;">Arif Ahmed</div>
+                                <div style="font-size: 11px; color: var(--text-light);">ID: EMP-105 • Sales Lead</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="status-pill status-good">Achiever</span></td>
+                    <td>98 Items</td>
+                    <td class="amt-bold">৳ 2,10,000</td>
+                    <td><span class="bonus-amt">৳ 4,200</span></td>
+                    <td>
+                        <div style="font-size: 12px; font-weight: 600;">25%</div>
+                        <div class="progress-mini"><div class="progress-fill" style="width: 25%; background: #f59e0b;"></div></div>
+                    </td>
+                    <td><button class="action-btn">View Invoices</button></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <div class="staff-cell">
+                            <div class="staff-img" style="background:#fff1f2; color: #e11d48;">SK</div>
+                            <div>
+                                <div style="font-weight: 700;">Sara Khan</div>
+                                <div style="font-size: 11px; color: var(--text-light);">ID: EMP-109 • Executive</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="status-pill" style="background:#f1f5f9; color:#475569;">Average</span></td>
+                    <td>42 Items</td>
+                    <td class="amt-bold">৳ 1,15,000</td>
+                    <td><span class="bonus-amt">৳ 2,300</span></td>
+                    <td>
+                        <div style="font-size: 12px; font-weight: 600;">14%</div>
+                        <div class="progress-mini"><div class="progress-fill" style="width: 14%; background: #94a3b8;"></div></div>
+                    </td>
+                    <td><button class="action-btn">View Invoices</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
